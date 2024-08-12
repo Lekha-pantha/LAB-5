@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Function to reverse the array from index `start` to `end`
 void reverse(int arr[], int start, int end) {
     while (start < end) {
         int temp = arr[start];
@@ -12,36 +11,36 @@ void reverse(int arr[], int start, int end) {
     }
 }
 
-// Function to find the next permutation
+
 int next_permutation(int arr[], int n) {
     int k, l;
 
-    // Step 1: Find the largest index `k` such that arr[k] < arr[k + 1]
+ 
     for (k = n - 2; k >= 0; k--) {
         if (arr[k] < arr[k + 1]) {
             break;
         }
     }
 
-    // If no such index exists, the array is in the last permutation
+    
     if (k < 0) {
         reverse(arr, 0, n - 1);
         return 0; // No next permutation, array is sorted in descending order
     }
 
-    // Step 2: Find the largest index `l` greater than `k` such that arr[k] < arr[l]
+
     for (l = n - 1; l > k; l--) {
         if (arr[k] < arr[l]) {
             break;
         }
     }
 
-    // Step 3: Swap arr[k] with arr[l]
+   
     int temp = arr[k];
     arr[k] = arr[l];
     arr[l] = temp;
 
-    // Step 4: Reverse the sequence from arr[k + 1] to the end
+ 
     reverse(arr, k + 1, n - 1);
 
     return 1; // Next permutation was found
