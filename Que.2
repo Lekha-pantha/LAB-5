@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// Function to print the combination
+
 void print_combination(int combination[], int r) {
     for (int i = 0; i < r; i++) {
         printf("%d ", combination[i]);
@@ -8,7 +8,6 @@ void print_combination(int combination[], int r) {
     printf("\n");
 }
 
-// Function to generate the next combination
 int next_combination(int combination[], int n, int r) {
     // Step 1: Find the rightmost element that can be incremented
     int i = r - 1;
@@ -16,15 +15,14 @@ int next_combination(int combination[], int n, int r) {
         i--;
     }
 
-    // If no such element is found, the combination is the last one
     if (i < 0) {
         return 0; // No more combinations
     }
 
-    // Step 2: Increment this element
+   
     combination[i]++;
 
-    // Step 3: Update the elements after index `i`
+   
     for (int j = i + 1; j < r; j++) {
         combination[j] = combination[i] + j - i;
     }
