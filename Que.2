@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+// Function to print the combination
+void print_combination(int combination[], int r) {
+    for (int i = 0; i < r; i++) {
+        printf("%d ", combination[i]);
+    }
+    printf("\n");
+}
+
+// Function to generate the next combination
+int next_combination(int combination[], int n, int r) {
+    // Step 1: Find the rightmost element that can be incremented
+    int i = r - 1;
+    while (i >= 0 && combination[i] == n - r + i) {
+        i--;
+    }
+
+    // If no such element is found, the combination is the last one
+    if (i < 0) {
+        return 0; // No more combinations
+    }
+
+    // Step 2: Increment this element
+    combination[i]++;
+
+    // Step 3: Update the elements after index `i`
+    for (int j = i + 1; j < r; j++) {
+        combination[j] = combination[i] + j - i;
+    }
+
+    return 1; // Successfully generated the next combination
+}
+
+int main() {
+    int n = 5; // Total number of elements
+    int r = 3; // Size of combination
+    int combination[] = {0, 1, 2}; // Example initial combination
+
+    printf("Initial combination: ");
+    print_combination(combination, r);
+
+    // Generate and print the next `r`-combination
+    while (next_combination(combination, n, r)) {
+        printf("Next combination: ");
+        print_combination(combination, r);
+    }
+
+    printf("No more combinations.\n");
+
+    return 0;
+}
